@@ -1,0 +1,47 @@
+h1 {
+	text-align: center;
+	color:teal;
+}
+h4 {
+	text-align: center;
+	color:white;
+}
+#jumbotron1 {
+	background-color: #784831;
+	color:white;
+}
+.jumbotron {
+    padding-top: 13px;
+    padding-bottom: 73px;
+    margin: 15%;
+    margin-top: 1%;
+}
+#jumbotron2, #jumbotron3 {
+    padding-top: 0px;
+    width: 70%;
+    margin: 15%;
+    margin-top: -14%;
+    border-style:solid;
+    border-color:#437AB2;
+}
+/*this is the header for the table*/
+.table>thead>tr.info>th {
+    background-color: #437AB2;
+    color:white;
+}
+/*width of each cell*/
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    width: 21%;
+}
+.form-group {
+	margin:1%;
+}
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    margin: 1%;
+}
