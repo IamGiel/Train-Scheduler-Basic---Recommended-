@@ -38,7 +38,7 @@ h4 {
 .form-group {
 	margin:1%;
 }
-.btn-sm {
+#submit {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
