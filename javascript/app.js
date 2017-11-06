@@ -34,18 +34,21 @@ $(document).ready(function(){
 
       employeeName = $("#employee-name").val().trim();
       role = $("#role-of").val().trim();//has to be a ("#data-format") so ("#role") will not work
+      firstArrival = moment($("#first-arrival").val().trim(), "H:mm").format("H:mm");
       frequency = $("#start-date").val().trim();
       
-      console.log(frequency);
+      console.log("minutes first arrived: " + firstArrival);
       $("#employee-name").val("");
       $("#role-of").val("");
       $("#start-date").val("");
-      $("#monthly-rate").val(""); 
+      $("#monthly-rate").val("");
+      $("#first-arrival").val("");  
 
       database.ref().push({
             employeeName:employeeName,
             role:role,
-            frequency:frequency,
+            firstArrival:firstArrival,
+            frequency:frequency
            
       })
       $(".table > #tbody").append("<tr><td>" + employeeName + "</td><td>" + role + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td></tr>"); 
@@ -54,7 +57,7 @@ $(document).ready(function(){
   database.ref().orderByChild("frequency").on("child_added", function(childSnapshot) {
       console.log(childSnapshot.val());
       var frequency = childSnapshot.val().frequency;
-      var firstTime = "12:00";
+      var firstTime = childSnapshot.val().firstArrival;
       var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
       console.log(firstTimeConverted);
       var currentTime = moment();
@@ -68,7 +71,7 @@ $(document).ready(function(){
       var nextTrain = currentTime.add(tMinutesTillTrain, "minutes");
       console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
-      $(".table > tbody").append("<tr><td>" + childSnapshot.val().employeeName + "</td><td>" + childSnapshot.val().role + "</td><td>" + frequency + "</td><td>" + moment(nextTrain).format("hh:mm") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
+      $(".table > tbody").append("<tr><td>" + childSnapshot.val().employeeName + "</td><td>" + childSnapshot.val().role + "</td><td>" + firstTime  + "</td><td>" + frequency + "</td><td>" + moment(nextTrain).format("hh:mm") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
       
   })
 
